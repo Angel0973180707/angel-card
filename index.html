@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天使笑長數位分身 | 幸福教養概念館</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --primary-green: #88b04b; /* 蘋果綠 */
+            --soft-pink: #fff0f3;      /* 淺粉紅背景 */
+            --border-pink: #ffd1dc;    /* 淺粉紅邊框 */
+            --text-pink: #d63384;      /* 粉紅文字色 */
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: #f9fbf7;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            color: #334155;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(136, 176, 75, 0.15);
+            position: relative;
+            margin: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: visible; 
+        }
+
+        .header-bg {
+            background: linear-gradient(135deg, #88b04b 0%, #c5e1a5 100%);
+            height: 180px;
+            position: relative;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+        }
+
+        .header-decoration {
+            position: absolute;
+            bottom: -35px;
+            left: -10%;
+            width: 120%;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .avatar-wrapper {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .avatar-circle {
+            width: 135px;
+            height: 135px;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 12px 30px rgba(136, 176, 75, 0.2);
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #f1f5f9;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 標籤樣式 */
+        .tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            margin: 3px;
+            font-weight: 500;
+            white-space: nowrap; 
+            background: var(--soft-pink);
+            color: var(--text-pink);
+            border: 1px solid var(--border-pink);
+        }
+
+        /* 功能按鈕框 - 粉紅風格 */
+        .entry-card {
+            border-radius: 24px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            margin-bottom: 16px;
+            background: var(--soft-pink);
+            border: 1px solid var(--border-pink);
+            box-shadow: 0 4px 12px rgba(255, 192, 203, 0.1);
+        }
+        .entry-card:active { transform: scale(0.96); }
+
+        /* 素養目標方塊 */
+        .target-card {
+            background: var(--soft-pink);
+            border-radius: 20px;
+            padding: 15px 5px;
+            border: 1px solid var(--border-pink);
+            box-shadow: 0 4px 10px rgba(255, 192, 203, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* QR Code 展示區佈局 */
+        .qr-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 25px;
+            padding: 15px 10px;
+            background: #fdf2f4;
+            border-radius: 25px;
+            border: 1px dashed var(--border-pink);
+        }
+
+        .footer-banner {
+            background: linear-gradient(to right, transparent, var(--soft-pink), transparent);
+            padding: 25px 15px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            text-align: center;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .main-title {
+            font-size: 1.5rem; 
+            font-weight: 800;
+            color: #1e293b;
+            letter-spacing: 0.1em;
+            white-space: nowrap; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="card-container">
+    <!-- 頂部漸層區 -->
+    <div class="header-bg">
+        <div class="pt-10 text-center text-white">
+            <h1 class="text-2xl font-bold tracking-[0.2em] drop-shadow-md">幸福教養概念館</h1>
+            <p class="text-[9px] opacity-90 mt-1 uppercase tracking-[0.3em]">Digital Twin Service</p>
+        </div>
+        <div class="header-decoration"></div>
+    </div>
+
+    <!-- 笑長頭像區 -->
+    <div class="avatar-wrapper">
+        <div class="avatar-circle">
+            <div class="avatar-inner">
+                <!-- 這裡是笑長的照片，檔名請設為 1000016496.jpg -->
+                <img src="1000016496.jpg" alt="天使笑長數位分身照片" onerror="this.src='https://api.dicebear.com/7.x/bottts-neutral/svg?seed=angel&backgroundColor=ffd1dc'">
+            </div>
+        </div>
+    </div>
+
+    <!-- 主要內容區 -->
+    <div class="main-content pt-[75px] pb-5 px-6 text-center">
+        <!-- 名稱與標籤區 -->
+        <div class="mb-6">
+            <div class="flex items-center justify-center gap-2 mb-1">
+                <h2 class="main-title">小天使館長</h2>
+                <span class="bg-[#88b04b] text-white text-[9px] px-2 py-0.5 rounded-full font-bold">數位分身</span>
+            </div>
+            <div class="text-[#88b04b] font-bold text-lg tracking-[0.15em] mb-3">@天使笑長</div>
+            
+            <div class="flex flex-wrap justify-center gap-1">
+                <span class="tag">退休國小教師</span>
+                <span class="tag">正能量女神</span>
+                <span class="tag">幸福姑</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-1 mt-1">
+                <span class="tag"><i class="fas fa-brain mr-1"></i>心腦科學實踐</span>
+                <span class="tag"><i class="fas fa-heart mr-1"></i>讓愛發揮力量</span>
+            </div>
+        </div>
+
+        <!-- 連結按鈕區 -->
+        <div class="space-y-4 mb-10 text-left">
+            <!-- 幸福智多星按鈕 -->
+            <div onclick="window.open('https://angel0973180707.github.io/test-bot/', '_blank')" class="entry-card">
+                <div class="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-slate-700">幸福智多星</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">✨ 輸入教養問題，匹配影片與解決方案</p>
+                </div>
+                <i class="fas fa-chevron-right text-pink-300 text-xs"></i>
+            </div>
+
+            <!-- YouTube 按鈕 -->
+            <div onclick="window.open('https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7', '_blank')" class="entry-card">
+                <div class="w-14 h-14 bg-rose-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-slate-700">天使笑長 YouTube</h4>
+                    <p class="text-[11px] text-slate-500 mt-1">每週二四六更新，讓愛發揮力量</p>
+                </div>
+                <i class="fas fa-chevron-right text-pink-300 text-xs"></i>
+            </div>
+        </div>
+
+        <!-- 素養核心 -->
+        <div class="mb-10">
+            <div class="text-[10px] font-bold text-slate-300 tracking-[0.4em] mb-4 uppercase">發展核心素養</div>
+            <div class="grid grid-cols-4 gap-3">
+                <div class="target-card">
+                    <div class="text-2xl mb-1">🧘</div>
+                    <div class="text-[10px] font-bold text-pink-700">穩定</div>
+                </div>
+                <div class="target-card">
+                    <div class="text-2xl mb-1">🦋</div>
+                    <div class="text-[10px] font-bold text-pink-700">自在</div>
+                </div>
+                <div class="target-card">
+                    <div class="text-2xl mb-1">💪</div>
+                    <div class="text-[10px] font-bold text-pink-700">我能</div>
+                </div>
+                <div class="target-card">
+                    <div class="text-2xl mb-1">🚀</div>
+                    <div class="text-[10px] font-bold text-pink-700">潛能</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 聯絡區 -->
+        <div class="flex justify-center items-center mb-10">
+            <a href="mailto:a0973180707@gmail.com" class="flex flex-col items-center gap-2">
+                <div class="w-16 h-16 bg-sky-400 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </div>
+                <span class="text-[12px] text-slate-400 font-bold">郵件諮詢</span>
+                <span class="text-[10px] text-slate-300">a0973180707@gmail.com</span>
+            </a>
+        </div>
+
+        <!-- QR Code 展示區 -->
+        <div class="qr-section">
+            <div class="text-center">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://angel0973180707.github.io/angel-happy-paw/" alt="教養概念館 QR" class="mx-auto rounded-lg bg-white p-1 shadow-sm w-full max-w-[90px]">
+                <p class="text-[9px] font-bold text-pink-600 mt-2 leading-tight">幸福教養<br>概念館</p>
+            </div>
+            <div class="text-center">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://line.me/ti/p/VqJzbWHm_4" alt="LINE 友好 QR" class="mx-auto rounded-lg bg-white p-1 shadow-sm w-full max-w-[90px]">
+                <p class="text-[9px] font-bold text-pink-600 mt-2 leading-tight">加入 LINE<br>友好</p>
+            </div>
+            <div class="text-center">
+                <!-- 微信圖片 (1000016507.png) -->
+                <img src="1000016507.png" alt="微信 QR" onerror="this.src='https://placehold.co/150x150/fdf2f4/d63384?text=微信QR'" class="mx-auto rounded-lg bg-white p-1 shadow-sm w-full max-w-[90px]">
+                <p class="text-[9px] font-bold text-pink-600 mt-2 leading-tight">微信<br>諮詢</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部標語 -->
+    <div class="footer-banner">
+        <div class="text-pink-600 font-bold tracking-[0.1em] text-base mb-1">
+            愛感恩與付出
+        </div>
+        <div class="text-pink-400 font-medium tracking-[0.2em] text-sm">
+            散播歡樂，散播愛
+        </div>
+        <div class="mt-4 text-[9px] text-slate-300">© 幸福教養概念館 | 讓愛發揮力量</div>
+    </div>
+</div>
+
+</body>
+</html>
+
