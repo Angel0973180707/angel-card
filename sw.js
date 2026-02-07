@@ -1,7 +1,10 @@
-const CACHE_NAME = 'angel-happy-v1';
+const CACHE_NAME = 'angel-happy-v2';
 const ASSETS = [
   './index.html',
-  './manifest.json'
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  './1000016496.jpg'
 ];
 
 self.addEventListener('install', (event) => {
