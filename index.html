@@ -7,13 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
         
         :root {
-            --primary-green: #88b04b; /* 蘋果綠 */
-            --soft-pink: #fff0f3;      /* 淺粉紅背景 */
-            --border-pink: #ffd1dc;    /* 淺粉紅邊框 */
-            --text-pink: #d63384;      /* 粉紅文字色 */
+            --primary-green: #88b04b;
+            --soft-pink: #fff5f7;
+            --border-pink: #ffd1dc;
+            --text-pink: #d63384;
+            --shadow-color: rgba(214, 51, 132, 0.15);
         }
 
         body {
@@ -33,7 +34,7 @@
             max-width: 420px;
             background: white;
             border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(136, 176, 75, 0.15);
+            box-shadow: 0 30px 60px rgba(136, 176, 75, 0.2);
             position: relative;
             margin: 20px 10px;
             display: flex;
@@ -74,6 +75,9 @@
             border-radius: 50%;
             padding: 5px;
             box-shadow: 0 12px 30px rgba(136, 176, 75, 0.2);
+            border: 1px solid var(--border-pink);
+            outline: 2px solid white;
+            outline-offset: -4px;
         }
 
         .avatar-inner {
@@ -93,211 +97,353 @@
             object-fit: cover;
         }
 
-        /* 標籤樣式 */
         .tag {
             display: inline-block;
-            padding: 4px 14px;
+            padding: 5px 14px;
             border-radius: 30px;
             font-size: 0.75rem;
             margin: 3px;
-            font-weight: 500;
-            white-space: nowrap; 
+            font-weight: 700;
+            letter-spacing: 0.05em;
             background: var(--soft-pink);
             color: var(--text-pink);
             border: 1px solid var(--border-pink);
+            box-shadow: 0 2px 5px rgba(214, 51, 132, 0.05);
         }
 
-        /* 功能按鈕框 - 粉紅風格 */
-        .entry-card {
+        .3d-btn {
             border-radius: 24px;
-            padding: 20px;
+            padding: 18px 20px;
             display: flex;
             align-items: center;
             gap: 16px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            margin-bottom: 16px;
-            background: var(--soft-pink);
+            margin-bottom: 20px;
+            background: white;
+            position: relative;
+            top: 0;
             border: 1px solid var(--border-pink);
-            box-shadow: 0 4px 12px rgba(255, 192, 203, 0.1);
+            box-shadow: 
+                0 0 0 2px white inset,
+                0 6px 0px var(--border-pink), 
+                0 15px 25px var(--shadow-color);
         }
-        .entry-card:active { transform: scale(0.96); }
 
-        /* 素養目標方塊 */
+        .3d-btn:active {
+            top: 4px;
+            box-shadow: 
+                0 0 0 2px white inset,
+                0 2px 0px var(--border-pink), 
+                0 5px 10px var(--shadow-color);
+        }
+
+        .service-item {
+            background: white;
+            border-radius: 20px;
+            padding: 18px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+            cursor: default;
+            border: 1px solid var(--border-pink);
+            box-shadow: 0 0 0 2.5px white inset, 0 4px 12px rgba(214, 51, 132, 0.08);
+            height: 100%;
+        }
+        
+        .service-icon-bg {
+            width: 54px;
+            height: 54px;
+            background: var(--soft-pink);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(214, 51, 132, 0.12);
+            margin-bottom: 2px;
+        }
+
+        .service-item i {
+            font-size: 1.6rem;
+            color: var(--text-pink);
+            display: inline-block;
+        }
+
+        .service-item span {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: #1e293b;
+            line-height: 1.4;
+            letter-spacing: 0.18em;
+        }
+
         .target-card {
             background: var(--soft-pink);
             border-radius: 20px;
             padding: 15px 5px;
-            border: 1px solid var(--border-pink);
-            box-shadow: 0 4px 10px rgba(255, 192, 203, 0.05);
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 1px solid var(--border-pink);
+            box-shadow: 0 0 0 2px white inset, 0 4px 10px rgba(255, 192, 203, 0.05);
         }
 
-        /* QR Code 展示區佈局 */
+        .copy-link-btn {
+            background: #fdf2f4;
+            color: var(--text-pink);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--border-pink);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 15px;
+            box-shadow: 0 0 0 2px white inset;
+            letter-spacing: 0.1em;
+        }
+
         .qr-section {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 25px;
-            padding: 15px 10px;
+            gap: 12px;
+            margin-top: 30px;
+            padding: 20px 12px;
             background: #fdf2f4;
-            border-radius: 25px;
+            border-radius: 30px;
             border: 1px dashed var(--border-pink);
+            outline: 2px solid white;
+            outline-offset: -8px;
         }
+
+        #toast {
+            visibility: hidden;
+            min-width: 220px;
+            background-color: #334155;
+            color: white;
+            text-align: center;
+            border-radius: 50px;
+            padding: 14px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 40px;
+            transform: translateX(-50%);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 40px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 40px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
         .footer-banner {
             background: linear-gradient(to right, transparent, var(--soft-pink), transparent);
-            padding: 25px 15px;
+            padding: 30px 15px;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             text-align: center;
-            border-top: 1px solid #f1f5f9;
+            border-top: 1px solid #f8fafc;
         }
 
         .main-title {
-            font-size: 1.5rem; 
-            font-weight: 800;
+            font-size: 1.6rem; 
+            font-weight: 900;
             color: #1e293b;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.22em;
             white-space: nowrap; 
+        }
+
+        .sub-text-sm {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            font-weight: 900;
+            color: #94a3b8;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
 <div class="card-container">
-    <!-- 頂部漸層區 -->
     <div class="header-bg">
         <div class="pt-10 text-center text-white">
-            <h1 class="text-2xl font-bold tracking-[0.2em] drop-shadow-md">幸福教養概念館</h1>
-            <p class="text-[9px] opacity-90 mt-1 uppercase tracking-[0.3em]">Digital Twin Service</p>
+            <h1 class="text-2xl font-black tracking-[0.35em] drop-shadow-lg">幸福教養概念館</h1>
+            <p class="text-[9px] font-bold opacity-90 mt-1 uppercase tracking-[0.4em]">Digital Twin Service</p>
         </div>
         <div class="header-decoration"></div>
     </div>
 
-    <!-- 笑長頭像區 -->
     <div class="avatar-wrapper">
         <div class="avatar-circle">
             <div class="avatar-inner">
-                <!-- 這裡是笑長的照片，檔名請設為 1000016496.jpg -->
                 <img src="1000016496.jpg" alt="天使笑長數位分身照片" onerror="this.src='https://api.dicebear.com/7.x/bottts-neutral/svg?seed=angel&backgroundColor=ffd1dc'">
             </div>
         </div>
     </div>
 
-    <!-- 主要內容區 -->
-    <div class="main-content pt-[75px] pb-5 px-6 text-center">
-        <!-- 名稱與標籤區 -->
-        <div class="mb-6">
+    <div class="main-content pt-[90px] pb-5 px-6 text-center">
+        <div class="mb-10">
             <div class="flex items-center justify-center gap-2 mb-1">
                 <h2 class="main-title">小天使館長</h2>
-                <span class="bg-[#88b04b] text-white text-[9px] px-2 py-0.5 rounded-full font-bold">數位分身</span>
+                <span class="bg-[#88b04b] text-white text-[9px] px-2.5 py-1 rounded-full font-black shadow-sm">數位分身</span>
             </div>
-            <div class="text-[#88b04b] font-bold text-lg tracking-[0.15em] mb-3">@天使笑長</div>
+            <div class="text-[#88b04b] font-black text-xl tracking-[0.28em] mb-1">@天使笑長</div>
             
-            <div class="flex flex-wrap justify-center gap-1">
+            <button onclick="copyToClipboard()" class="copy-link-btn">
+                <i class="fas fa-link"></i> 分享此數位分身網址
+            </button>
+
+            <div class="flex flex-wrap justify-center gap-1.5 mt-6">
                 <span class="tag">退休國小教師</span>
                 <span class="tag">正能量女神</span>
                 <span class="tag">幸福姑</span>
             </div>
-            <div class="flex flex-wrap justify-center gap-1 mt-1">
-                <span class="tag"><i class="fas fa-brain mr-1"></i>心腦科學實踐</span>
-                <span class="tag"><i class="fas fa-heart mr-1"></i>讓愛發揮力量</span>
-            </div>
         </div>
 
-        <!-- 連結按鈕區 -->
-        <div class="space-y-4 mb-10 text-left">
-            <!-- 幸福智多星按鈕 -->
-            <div onclick="window.open('https://angel0973180707.github.io/test-bot/', '_blank')" class="entry-card">
-                <div class="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md">
-                    <i class="fas fa-magic"></i>
+        <!-- 核心功能 -->
+        <div class="space-y-6 mb-12 text-left pt-2">
+            <div onclick="window.open('https://angel0973180707.github.io/test-bot/', '_blank')" class="3d-btn">
+                <div class="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-white/30">
+                    <i class="fas fa-wand-magic-sparkles"></i>
                 </div>
                 <div class="flex-1">
-                    <h4 class="font-bold text-slate-700">幸福智多星</h4>
-                    <p class="text-[11px] text-slate-500 mt-1">✨ 輸入教養問題，匹配影片與解決方案</p>
+                    <h4 class="font-black text-slate-700 tracking-wider">幸福智多星</h4>
+                    <p class="text-[11px] font-bold text-slate-500 mt-1">✨ 輸入問題，獲取專屬教養方案</p>
                 </div>
                 <i class="fas fa-chevron-right text-pink-300 text-xs"></i>
             </div>
 
-            <!-- YouTube 按鈕 -->
-            <div onclick="window.open('https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7', '_blank')" class="entry-card">
-                <div class="w-14 h-14 bg-rose-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md">
+            <div onclick="window.open('https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7', '_blank')" class="3d-btn">
+                <div class="w-14 h-14 bg-rose-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-white/30">
                     <i class="fab fa-youtube"></i>
                 </div>
                 <div class="flex-1">
-                    <h4 class="font-bold text-slate-700">天使笑長 YouTube</h4>
-                    <p class="text-[11px] text-slate-500 mt-1">每週二四六更新，讓愛發揮力量</p>
+                    <h4 class="font-black text-slate-700 tracking-wider">天使笑長 YouTube</h4>
+                    <p class="text-[11px] font-bold text-slate-500 mt-1">結合科學與愛的教養實踐頻道</p>
                 </div>
                 <i class="fas fa-chevron-right text-pink-300 text-xs"></i>
             </div>
         </div>
 
-        <!-- 素養核心 -->
-        <div class="mb-10">
-            <div class="text-[10px] font-bold text-slate-300 tracking-[0.4em] mb-4 uppercase">發展核心素養</div>
+        <!-- 專業服務項目 -->
+        <div class="mb-14 text-center">
+            <div class="sub-text-sm mb-6 text-center">Professional Services</div>
+            <div class="grid grid-cols-2 gap-5 px-1">
+                <!-- 親子課程規劃 - 更換為筆記本圖示 -->
+                <div class="service-item">
+                    <div class="service-icon-bg">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <span>親子課程<br>活動規劃</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon-bg">
+                        <i class="fas fa-microphone-lines"></i>
+                    </div>
+                    <span>幸福教養<br>專題演講</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon-bg">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span>幸福教養<br>深度課程</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon-bg">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <span>教養工具<br>PWA開發</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 發展核心素養 -->
+        <div class="mb-14">
+            <div class="sub-text-sm mb-6">Core Competencies</div>
             <div class="grid grid-cols-4 gap-3">
                 <div class="target-card">
                     <div class="text-2xl mb-1">🧘</div>
-                    <div class="text-[10px] font-bold text-pink-700">穩定</div>
+                    <div class="text-[10px] font-black text-pink-700 tracking-[0.25em]">穩定</div>
                 </div>
                 <div class="target-card">
                     <div class="text-2xl mb-1">🦋</div>
-                    <div class="text-[10px] font-bold text-pink-700">自在</div>
+                    <div class="text-[10px] font-black text-pink-700 tracking-[0.25em]">自在</div>
                 </div>
                 <div class="target-card">
                     <div class="text-2xl mb-1">💪</div>
-                    <div class="text-[10px] font-bold text-pink-700">我能</div>
+                    <div class="text-[10px] font-black text-pink-700 tracking-[0.25em]">我能</div>
                 </div>
                 <div class="target-card">
                     <div class="text-2xl mb-1">🚀</div>
-                    <div class="text-[10px] font-bold text-pink-700">潛能</div>
+                    <div class="text-[10px] font-black text-pink-700 tracking-[0.25em]">潛能</div>
                 </div>
             </div>
         </div>
 
-        <!-- 聯絡區 -->
-        <div class="flex justify-center items-center mb-10">
+        <!-- 諮詢 -->
+        <div class="flex justify-center items-center mb-14">
             <a href="mailto:a0973180707@gmail.com" class="flex flex-col items-center gap-2">
-                <div class="w-16 h-16 bg-sky-400 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all">
-                    <i class="fas fa-envelope text-2xl"></i>
+                <div class="w-16 h-16 bg-sky-400 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all border-2 border-white outline outline-1 outline-sky-200">
+                    <i class="fas fa-paper-plane text-2xl"></i>
                 </div>
-                <span class="text-[12px] text-slate-400 font-bold">郵件諮詢</span>
-                <span class="text-[10px] text-slate-300">a0973180707@gmail.com</span>
+                <span class="text-[13px] text-slate-600 font-black tracking-[0.25em] mt-1">郵件諮詢</span>
+                <span class="text-[10px] text-slate-400 font-bold">a0973180707@gmail.com</span>
             </a>
         </div>
 
-        <!-- QR Code 展示區 -->
+        <!-- QR Code -->
         <div class="qr-section">
             <div class="text-center">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://angel0973180707.github.io/angel-happy-paw/" alt="教養概念館 QR" class="mx-auto rounded-lg bg-white p-1 shadow-sm w-full max-w-[90px]">
-                <p class="text-[9px] font-bold text-pink-600 mt-2 leading-tight">幸福教養<br>概念館</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://angel0973180707.github.io/angel-happy-paw/" alt="教養概念館 QR" class="mx-auto rounded-xl bg-white p-1.5 shadow-sm w-full max-w-[95px] border border-pink-100">
+                <p class="text-[9px] font-black text-pink-600 mt-2.5 leading-tight tracking-widest">幸福教養<br>概念館</p>
             </div>
             <div class="text-center">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://line.me/ti/p/VqJzbWHm_4" alt="LINE 友好 QR" class="mx-auto rounded-lg bg-white p-1 shadow-sm w-full max-w-[90px]">
-                <p class="text-[9px] font-bold text-pink-600 mt-2 leading-tight">加入 LINE<br>友好</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://line.me/ti/p/VqJzbWHm_4" alt="LINE 友好 QR" class="mx-auto rounded-xl bg-white p-1.5 shadow-sm w-full max-w-[95px] border border-pink-100">
+                <p class="text-[9px] font-black text-pink-600 mt-2.5 leading-tight tracking-widest">加入 LINE<br>友好</p>
             </div>
             <div class="text-center">
-                <!-- 微信圖片 (1000016507.png) -->
-                <img src="1000016507.png" alt="微信 QR" onerror="this.src='https://placehold.co/150x150/fdf2f4/d63384?text=微信QR'" class="mx-auto rounded-lg bg-white p-1 shadow-sm w-full max-w-[90px]">
-                <p class="text-[9px] font-bold text-pink-600 mt-2 leading-tight">微信<br>諮詢</p>
+                <img src="1000016507.png" alt="微信 QR" onerror="this.src='https://placehold.co/150x150/fdf2f4/d63384?text=微信QR'" class="mx-auto rounded-xl bg-white p-1.5 shadow-sm w-full max-w-[95px] border border-pink-100">
+                <p class="text-[9px] font-black text-pink-600 mt-2.5 leading-tight tracking-widest">微信<br>諮詢</p>
             </div>
         </div>
     </div>
 
-    <!-- 底部標語 -->
+    <!-- 頁尾 -->
     <div class="footer-banner">
-        <div class="text-pink-600 font-bold tracking-[0.1em] text-base mb-1">
+        <div class="text-pink-600 font-black tracking-[0.35em] text-lg mb-2">
             愛感恩與付出
         </div>
-        <div class="text-pink-400 font-medium tracking-[0.2em] text-sm">
+        <div class="text-pink-400 font-black tracking-[0.4em] text-[13px]">
             散播歡樂，散播愛
         </div>
-        <div class="mt-4 text-[9px] text-slate-300">© 幸福教養概念館 | 讓愛發揮力量</div>
+        <div class="mt-6 text-[9px] text-slate-300 font-bold tracking-widest">© 幸福教養概念館 | 讓愛發揮力量</div>
     </div>
 </div>
+
+<div id="toast">已複製網址，快分享給好友吧！</div>
+
+<script>
+    function copyToClipboard() {
+        const dummy = document.createElement('input');
+        const text = window.location.href;
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        
+        const toast = document.getElementById("toast");
+        toast.className = "show";
+        setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+</script>
 
 </body>
 </html>
