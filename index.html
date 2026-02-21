@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>天使笑長數位分身 | 幸福教養概念館</title>
     
-    <!-- PWA 核心設定 -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#88b04b">
     <link rel="apple-touch-icon" href="icon-192.png">
@@ -13,7 +12,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="幸福教養">
 
-    <!-- 外部資源 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -317,9 +315,19 @@
             </div>
         </div>
 
-        <!-- 核心功能區 -->
         <div class="space-y-6 mb-12 text-left pt-2">
-            <!-- 幸福智多星 -->
+            
+            <div onclick="window.open('https://angel0973180707.github.io/angel-happy-paw/', '_blank')" class="3d-btn border-[#88b04b]/30">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-inner border border-gray-100 overflow-hidden">
+                    <img src="1000016445.jpg" alt="概念館標誌" class="w-full h-full object-cover" onerror="this.parentNode.innerHTML='<i class=\'fas fa-house-chimney-heart text-2xl text-[#88b04b]\'></i>'">
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-black text-slate-700 tracking-wider">幸福教養概念館</h4>
+                    <p class="text-[11px] font-bold text-[#88b04b] mt-1">🏠 探索完整教養資源與幸福地圖</p>
+                </div>
+                <i class="fas fa-chevron-right text-[#88b04b]/50 text-xs"></i>
+            </div>
+
             <div onclick="window.open('https://angel0973180707.github.io/test-bot/', '_blank')" class="3d-btn">
                 <div class="w-14 h-14 bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-white/30">
                     <i class="fas fa-wand-magic-sparkles"></i>
@@ -331,7 +339,6 @@
                 <i class="fas fa-chevron-right text-pink-300 text-xs"></i>
             </div>
 
-            <!-- YouTube 頻道 -->
             <div onclick="window.open('https://www.youtube.com/@%E5%A4%A9%E4%BD%BF%E7%AC%91%E9%95%B7', '_blank')" class="3d-btn">
                 <div class="w-14 h-14 bg-rose-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-white/30">
                     <i class="fab fa-youtube"></i>
@@ -344,7 +351,6 @@
             </div>
         </div>
 
-        <!-- 專業服務項目 -->
         <div class="mb-14 text-center">
             <div class="sub-text-sm mb-6 text-center">Professional Services</div>
             <div class="grid grid-cols-2 gap-5 px-1">
@@ -375,7 +381,6 @@
             </div>
         </div>
 
-        <!-- 核心競爭力 -->
         <div class="mb-14">
             <div class="sub-text-sm mb-6">Core Competencies</div>
             <div class="grid grid-cols-4 gap-3">
@@ -398,7 +403,6 @@
             </div>
         </div>
 
-        <!-- 郵件諮詢 -->
         <div class="flex justify-center items-center mb-14">
             <a href="mailto:a0973180707@gmail.com" class="flex flex-col items-center gap-2">
                 <div class="w-16 h-16 bg-sky-400 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all border-2 border-white outline outline-1 outline-sky-200">
@@ -409,7 +413,6 @@
             </a>
         </div>
 
-        <!-- QR Code 區塊 -->
         <div class="qr-section">
             <div class="text-center">
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://angel0973180707.github.io/angel-happy-paw/" alt="教養概念館 QR" class="mx-auto rounded-xl bg-white p-1.5 shadow-sm w-full max-w-[95px] border border-pink-100">
@@ -426,7 +429,6 @@
         </div>
     </div>
 
-    <!-- 頁尾 -->
     <div class="footer-banner">
         <div class="text-pink-600 font-black tracking-[0.35em] text-lg mb-2">
             愛感恩與付出
@@ -440,9 +442,7 @@
 
 <div id="toast">已複製網址，快分享給好友吧！</div>
 
-<!-- PWA 註冊與功能邏輯 -->
 <script>
-    // 註冊 Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js')
@@ -451,12 +451,6 @@
         });
     }
 
-    // 監聽 PWA 安裝提示 (Android)
-    window.addEventListener('beforeinstallprompt', (e) => {
-        console.log('PWA: 安裝提示已就緒');
-    });
-
-    // 複製網址功能
     function copyToClipboard() {
         const dummy = document.createElement('input');
         const text = window.location.href;
@@ -474,4 +468,3 @@
 
 </body>
 </html>
-
