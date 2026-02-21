@@ -1,4 +1,4 @@
-const CACHE_NAME = 'angel-happy-v4';
+const CACHE_NAME = 'angel-happy-v5';
 const ASSETS = [
   './index.html',
   './manifest.json',
