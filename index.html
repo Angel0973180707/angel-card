@@ -245,11 +245,13 @@
             font-weight: 700;
             letter-spacing: 0.05em;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
         }
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
-
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 40px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 40px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        #toast.show { 
+            visibility: visible; 
+            opacity: 1;
+        }
 
         .footer-banner {
             background: linear-gradient(to right, transparent, var(--soft-pink), transparent);
@@ -452,19 +454,49 @@
         });
     }
 
-    // 複製網址功能
+    // 修復後的一鍵複製功能 (使用現代 API)
     function copyToClipboard() {
-        const dummy = document.createElement('input');
-        const text = window.location.href;
-        document.body.appendChild(dummy);
-        dummy.value = text;
-        dummy.select();
-        document.execCommand('copy');
-        document.body.removeChild(dummy);
+        const textToCopy = window.location.href;
         
+        // 優先使用 navigator.clipboard
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    showToast();
+                })
+                .catch(err => {
+                    fallbackCopy(textToCopy);
+                });
+        } else {
+            fallbackCopy(textToCopy);
+        }
+    }
+
+    // 備用複製方案 (相容舊手機)
+    function fallbackCopy(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        textArea.style.top = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast();
+        } catch (err) {
+            console.error('無法複製', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function showToast() {
         const toast = document.getElementById("toast");
         toast.className = "show";
-        setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        setTimeout(function(){ 
+            toast.className = toast.className.replace("show", ""); 
+        }, 3000);
     }
 </script>
 
